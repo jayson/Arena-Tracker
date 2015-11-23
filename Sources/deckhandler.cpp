@@ -7,8 +7,8 @@ DeckHandler::DeckHandler(QObject *parent, QMap<QString, QJsonObject> *cardsJson,
     this->cardsJson = cardsJson;
     this->inGame = false;
     this->transparency = Opaque;
-    this->greyedHeight = 35;
-    this->cardHeight = 35;
+    this->greyedHeight = 50;
+    this->cardHeight = 50;
     this->drawAnimating = false;
     this->drawDisappear = 10;
     this->synchronized = false;

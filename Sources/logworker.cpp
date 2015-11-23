@@ -26,21 +26,21 @@ void LogWorker::readLog()
 
     logFile.seek(logSeek);
 
-    char line[2048];
+    char line[5000];
     int lineLenght;
 
     while((lineLenght = logFile.readLine(line, sizeof(line))) > 0)
     {
+        logSeek += lineLenght;
         if((line[lineLenght-1] != '\n') &&
                 lineLenght<((int)sizeof(line)-1))
         {
             //Leida linea a medias.
-            return;
+            continue;
         }
 
         emit newLogLineRead(QString(line), ++logNumLine);
 
-        logSeek += lineLenght + 1;
         emit seekChanged(logSeek);
     }
 

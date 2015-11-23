@@ -66,7 +66,7 @@ void HandCard::drawCreatedByHandCard()
 {
     QFont font("Belwe Bd BT");
 
-    QPixmap canvas(CARD_SIZE);
+    QPixmap canvas(CARD_CANVAS);
     canvas.fill(Qt::transparent);
     QPainter painter;
     painter.begin(&canvas);
@@ -78,19 +78,9 @@ void HandCard::drawCreatedByHandCard()
         //Card
         QRectF target = QRectF(113,6,100,25);;
         QRectF source;
-
-        QFileInfo cardFI(Utility::appPath() + "/HSCards/" + createdByCode + ".png");
-        if(cardFI.exists())
-        {
-            if(type==QString("Minion"))         source = QRectF(48,72,100,25);
-            else                                source = QRectF(48,98,100,25);
-            painter.drawPixmap(target, QPixmap(Utility::appPath() + "/HSCards/" + createdByCode + ".png"), source);
-        }
-        else
-        {
-            source = QRectF(63,18,100,25);
-            painter.drawPixmap(target, QPixmap(Utility::appPath() + "/HSCards/unknown.png"), source);
-        }
+        if(type==QString("Minion"))         source = QRectF(48,72,100,25);
+        else                                source = QRectF(48,98,100,25);
+        painter.drawPixmap(target, QPixmap(Utility::appPath() + "/HSCards/" + createdByCode + ".png"), source);
 
         //Background
         painter.drawPixmap(0,0,QPixmap(":Images/handCard3.png"));
@@ -141,6 +131,7 @@ void HandCard::drawCreatedByHandCard()
         path.addText(34, 20 + textHigh/4, font, name);
         painter.drawPath(path);
     painter.end();
+    canvas = canvas.scaled(CARD_SIZE, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
     this->listItem->setIcon(QIcon(canvas));
 }
@@ -149,7 +140,7 @@ void HandCard::drawCreatedByHandCard()
 void HandCard::drawDefaultHandCard()
 {
     QFont font("Belwe Bd BT");
-    QPixmap canvas(CARD_SIZE);
+    QPixmap canvas(CARD_CANVAS);
     canvas.fill(Qt::transparent);
     QPainter painter;
     painter.begin(&canvas);
@@ -184,6 +175,7 @@ void HandCard::drawDefaultHandCard()
         path.addText(172 - textWide/2, 20 + textHigh/4, font, "T"+QString::number((this->turn+1)/2));
         painter.drawPath(path);
     painter.end();
+    canvas = canvas.scaled(CARD_SIZE, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
     this->listItem->setIcon(QIcon(canvas));
 }

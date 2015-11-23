@@ -10,6 +10,7 @@ TARGET = ArenaTracker
 TEMPLATE = app
 
 QT_CONFIG -= no-pkg-config
+QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.10
 
 # MAC OS FIX (set your opencv headers path)
 #unix:INCLUDEPATH += "/usr/local/Cellar/opencv/2.4.12/include/opencv headers"

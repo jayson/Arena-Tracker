@@ -311,6 +311,7 @@ bool LogLoader::isLogReset()
         //Log se ha reiniciado
         emit pDebug("Log reset. FileSize: " + QString::number(newSize) + " < " + QString::number(logSize));
         emit pLog(tr("Log: Hearthstone started. Log reset."));
+        updateTime = 1000;
         emit seekChanged(0);
         logWorker->resetSeek();
         logSize = 0;

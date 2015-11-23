@@ -677,7 +677,7 @@ void MainWindow::readSettings()
         if(numWindows == 2) createSecondaryWindow();
 
         this->greyedHeight = settings.value("greyedHeight", -1).toInt();
-        this->cardHeight = settings.value("cardHeight", 35).toInt();
+        this->cardHeight = settings.value("cardHeight", 50).toInt();
         this->drawDisappear = settings.value("drawDisappear", 5).toInt();
         this->showDraftOverlay = settings.value("showDraftOverlay", true).toBool();
         this->draftLearningMode = settings.value("draftLearningMode", false).toBool();
@@ -1523,7 +1523,7 @@ void MainWindow::addTamGreyedMenu(QMenu *menu)
     QAction *action1 = new QAction("20px", this);
     QAction *action2 = new QAction("25px", this);
     QAction *action3 = new QAction("30px", this);
-    QAction *action4 = new QAction("35px(Normal)", this);
+    QAction *action4 = new QAction("50px(Normal)", this);
     QAction *action5 = new QAction("= Card Size", this);
     action0->setCheckable(true);
     action1->setCheckable(true);
@@ -1535,7 +1535,7 @@ void MainWindow::addTamGreyedMenu(QMenu *menu)
     connect(action1, SIGNAL(triggered()), this, SLOT(tamGreyed20px()));
     connect(action2, SIGNAL(triggered()), this, SLOT(tamGreyed25px()));
     connect(action3, SIGNAL(triggered()), this, SLOT(tamGreyed30px()));
-    connect(action4, SIGNAL(triggered()), this, SLOT(tamGreyed35px()));
+    connect(action4, SIGNAL(triggered()), this, SLOT(tamGreyed50px()));
     connect(action5, SIGNAL(triggered()), this, SLOT(tamGreyedAsCardSize()));
 
     QActionGroup *splitGroup = new QActionGroup(this);
@@ -1560,7 +1560,7 @@ void MainWindow::addTamGreyedMenu(QMenu *menu)
         case 30:
             action3->setChecked(true);
             break;
-        case 35:
+        case 50:
             action4->setChecked(true);
             break;
         case -1:
@@ -1611,9 +1611,9 @@ void MainWindow::tamGreyed30px()
 }
 
 
-void MainWindow::tamGreyed35px()
+void MainWindow::tamGreyed50px()
 {
-    this->greyedHeight = 35;
+    this->greyedHeight = 50;
     deckHandler->setGreyedHeight(this->greyedHeight);
 }
 
@@ -1631,7 +1631,7 @@ void MainWindow::addTamCardMenu(QMenu *menu)
     QAction *action1 = new QAction("20px", this);
     QAction *action2 = new QAction("25px", this);
     QAction *action3 = new QAction("30px", this);
-    QAction *action4 = new QAction("35px(Normal)", this);
+    QAction *action4 = new QAction("50px(Normal)", this);
     action0->setCheckable(true);
     action1->setCheckable(true);
     action2->setCheckable(true);
@@ -1641,7 +1641,7 @@ void MainWindow::addTamCardMenu(QMenu *menu)
     connect(action1, SIGNAL(triggered()), this, SLOT(tamCard20px()));
     connect(action2, SIGNAL(triggered()), this, SLOT(tamCard25px()));
     connect(action3, SIGNAL(triggered()), this, SLOT(tamCard30px()));
-    connect(action4, SIGNAL(triggered()), this, SLOT(tamCard35px()));
+    connect(action4, SIGNAL(triggered()), this, SLOT(tamCard50px()));
 
     QActionGroup *splitGroup = new QActionGroup(this);
     splitGroup->addAction(action0);
@@ -1664,11 +1664,11 @@ void MainWindow::addTamCardMenu(QMenu *menu)
         case 30:
             action3->setChecked(true);
             break;
-        case 35:
+        case 50:
             action4->setChecked(true);
             break;
         default:
-            cardHeight = 35;
+            cardHeight = 50;
             action4->setChecked(true);
             break;
     }
@@ -1715,9 +1715,9 @@ void MainWindow::tamCard30px()
 }
 
 
-void MainWindow::tamCard35px()
+void MainWindow::tamCard50px()
 {
-    this->cardHeight = 35;
+    this->cardHeight = 50;
     deckHandler->setCardHeight(this->cardHeight);
     if(this->greyedHeight==-1)  deckHandler->setGreyedHeight(this->cardHeight);
 }
@@ -1864,10 +1864,8 @@ void MainWindow::completeToolButton()
 //Tooltip window
 //New stats site
 //Mostrar razas
-//Destruir elementos new en draft overlay
-//otherWindow padre window
-//test secret root
-//menu desactivar tooltips
+//Eliminar arenaHandler setTheme
+//Tam hands list
 
 //BUGS CONOCIDOS
 //Bug log tavern brawl (No hay [Bob] ---Register al entrar a tavern brawl) (Solo falla si no hay que hacer un mazo)

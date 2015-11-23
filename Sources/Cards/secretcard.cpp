@@ -23,12 +23,13 @@ void SecretCard::draw()
     if(this->code != "")
     {
         QPixmap canvas = DeckCard::draw(1, true);
+        canvas = canvas.scaled(CARD_SIZE, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
         this->treeItem->setIcon(0, QIcon(canvas));
     }
     else
     {
-        QPixmap canvas(CARD_SIZE);
+        QPixmap canvas(CARD_CANVAS);
         QPainter painter;
         painter.begin(&canvas);
             painter.fillRect(canvas.rect(), Qt::black);
@@ -57,6 +58,7 @@ void SecretCard::draw()
 
 
         painter.end();
+        canvas = canvas.scaled(CARD_SIZE, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
         this->treeItem->setIcon(0, QIcon(canvas));
     }

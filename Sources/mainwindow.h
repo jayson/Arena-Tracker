@@ -170,7 +170,7 @@ private slots:
     void tamGreyed20px();
     void tamGreyed25px();
     void tamGreyed30px();
-    void tamGreyed35px();
+    void tamGreyed50px();
     void tamGreyedAsCardSize();
     void timeDrawNo();
     void timeDraw5s();
@@ -180,7 +180,7 @@ private slots:
     void tamCard20px();
     void tamCard25px();
     void tamCard30px();
-    void tamCard35px();
+    void tamCard50px();
     void toggleShowDraftOverlay();
     void toggleTheme();
     void toggleDraftLearningMode();

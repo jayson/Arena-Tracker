@@ -14,7 +14,8 @@
 #define VIOLET QColor(186,85,211)
 #define ORANGE QColor(255,165,0)
 #define TRANSPARENT QColor(0,0,0,0)
-#define CARD_SIZE QSize(218,35)
+#define CARD_SIZE QSize(325,50)
+#define CARD_CANVAS QSize(218,35)
 
 class DeckCard
 {
@@ -37,13 +38,13 @@ protected:
 
 //Metodos
 protected:
-    QPixmap draw(uint total, bool drawRarity=false, QColor nameColor=BLACK, int cardHeight=35);
+    QPixmap draw(uint total, bool drawRarity=false, QColor nameColor=BLACK, int cardHeight=50);
     QColor getRarityColor();
     QString tooltip();
 
 public:
-    void draw(bool drawTotal=true, int cardHeight=35);
-    void drawGreyed(bool drawTotal, int cardHeight=35);
+    void draw(bool drawTotal=true, int cardHeight=50);
+    void drawGreyed(bool drawTotal, int cardHeight=50);
     QString getCode();
     QString getType();
     QString getName();

@@ -64,9 +64,9 @@ void DeckCard::drawGreyed(bool drawTotal, int cardHeight)
 
 QPixmap DeckCard::draw(uint total, bool drawRarity, QColor nameColor, int cardHeight)
 {
-    QFont font("Belwe Bd BT");
+    QFont font;
 
-    QPixmap canvas(CARD_SIZE);
+    QPixmap canvas(CARD_CANVAS);
     canvas.fill(Qt::transparent);
     QPainter painter;
     painter.begin(&canvas);
@@ -120,7 +120,7 @@ QPixmap DeckCard::draw(uint total, bool drawRarity, QColor nameColor, int cardHe
         //Name and mana
         if(name == "unknown")
         {
-            font.setPointSize(10);
+            font.setPointSize(14);
             painter.setFont(font);
             painter.setPen(QPen(BLACK));
             painter.drawText(QRectF(34,7,154,23), Qt::AlignVCenter, "Unknown");
@@ -128,10 +128,9 @@ QPixmap DeckCard::draw(uint total, bool drawRarity, QColor nameColor, int cardHe
         else
         {
             //Name
-            int fontSize = 11;
+            int fontSize = 14;
             font.setPointSize(fontSize);
             font.setBold(true);
-            font.setKerning(true);
 
 #ifdef Q_OS_WIN
             font.setLetterSpacing(QFont::AbsoluteSpacing, -2);
@@ -176,20 +175,7 @@ QPixmap DeckCard::draw(uint total, bool drawRarity, QColor nameColor, int cardHe
     painter.end();
 
     //Adapt to size
-    if(cardHeight<35)
-    {
-        if(cardHeight==30)
-        {
-            return canvas.copy(0,0+3,218,35-5);
-        }
-        else
-        {
-            canvas = canvas.copy(0,0+6,218,35-10);
-
-            if(cardHeight<25)   canvas = canvas.scaled(QSize(218,cardHeight), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-            return canvas;
-        }
-    }
+    canvas = canvas.scaled(CARD_SIZE, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
     return canvas;
 }
